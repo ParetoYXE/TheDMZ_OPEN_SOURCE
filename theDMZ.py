@@ -46,6 +46,7 @@ selectedInf = 0
 
 npcImage = pygame.image.load("npc.png")
 brushImage = pygame.image.load("brush.png")
+houseImage = pygame.image.load("house.png")
 
 
 
@@ -114,7 +115,10 @@ def generateENV():
 
 	genENV = ENV()
 
-	genENV.image ="brush"
+	if(random.randint(1,10) < 3):
+		genENV.image ="house"
+	else:
+		genENV.image ="brush"
 	genENV.x = random.randint(100,800)
 	genENV.y = random.randint(100,800)
 
@@ -187,7 +191,8 @@ def drawEnv():
 	for i in env:
 		if i.image == "brush":
 			gameDisplay.blit(brushImage,(i.x,i.y))
-
+		elif i.image == "house":
+			gameDisplay.blit(houseImage,(i.x,i.y))
 
 def mouseCollisionDetection(pos):
 	for i in entities:
@@ -205,7 +210,7 @@ for i in range(10):
 	entities.append(genNPC)
 
 
-for i in range(20):
+for i in range(30):
 	genENV = generateENV()
 	env.append(genENV)
 
